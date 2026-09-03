@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="certificate-container" id="certificate-container">
+        <div class="logo-container">
+            <img class="main-logo" src="./img/logo.png" alt="Organization Logo">
+            <a href="#"><img class="icon-logo" src="./img/icon.png" alt="Icon"></a>
+        </div>
+
+        <div class="text-container">
+            <h1>Certificate<br>Verification</h1>
+        </div>
+
+        <div class="certificate-card" id="certificate-card">
+            <h1 class="card-heading">Certificate Details</h1>
+            <hr class="divider">
+            <div class="detail-row">
+                <p class="detail-label">Certificate Holder Name:</p>
+                <p class="detail-value" id="cert-holder-name">KASHIF ALI ASHIQ ALI</p>
+            </div>
+            <div class="detail-row">
+                <p class="detail-label">Course Name:</p>
+                <p class="detail-value" id="cert-course-name">SHA BLS Provider</p>
+            </div>
+            <div class="detail-row">
+                <p class="detail-label">Certificate Valid From:</p>
+                <p class="detail-value" id="cert-valid-from">03-Sep-2026</p>
+            </div>
+            <div class="detail-row">
+                <p class="detail-label">Certificate Expiry Date:</p>
+                <p class="detail-value" id="cert-expiry-date">26-Sep-2028</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verification Toast Notification -->
+    <div class="verified-toast" id="verified-toast">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span id="toast-message">Certificate Verified Successfully!</span>
+    </div>
+
+    <!-- QR Code Scanner Modal -->
+    <div class="qr-modal-backdrop" id="qr-scanner-modal">
+        <div class="qr-modal">
+            <div class="qr-modal-header">
+                <h3 class="qr-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><rect x="7" y="7" width="10" height="10" rx="1"></rect></svg>
+                    Scan Certificate QR Code
+                </h3>
+                <button type="button" class="qr-modal-close" id="close-scanner-btn">&times;</button>
+            </div>
+            <div class="qr-modal-body">
+                <div class="qr-tabs">
+                    <button type="button" class="qr-tab-btn active" id="tab-camera">Camera Scanner</button>
+                    <button type="button" class="qr-tab-btn" id="tab-upload">Upload QR Image</button>
+                </div>
+
+                <!-- Camera Scanner Tab -->
+                <div class="qr-tab-panel active" id="panel-camera">
+                    <div id="qr-reader-container">
+                        <div id="reader"></div>
+                    </div>
+                    <p class="scanner-hint">Point your camera at the certificate QR code to verify instantly.</p>
+                    <div class="scanner-controls">
+                        <select id="camera-select" class="scanner-select" style="display: none;"></select>
+                        <button type="button" class="scanner-btn-small" id="start-camera-btn" style="display: none;">Start Camera</button>
+                        <button type="button" class="scanner-btn-small danger" id="stop-camera-btn">Stop Camera</button>
+                    </div>
+                </div>
+
+                <!-- Upload Image Tab -->
+                <div class="qr-tab-panel" id="panel-upload">
+                    <div class="qr-dropzone" id="qr-dropzone">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        </svg>
+                        <p><strong>Click to upload</strong> or drag & drop</p>
+                        <span>Select any saved QR image or certificate screenshot</span>
+                        <input type="file" id="qr-file-input" accept="image/*" style="display: none;">
+                    </div>
+                    <div style="margin-top: 15px; text-align: center;">
+                        <span style="font-size: 12px; color: #777;">Quick Test Scan:</span>
+                        <div style="display: flex; gap: 8px; justify-content: center; margin-top: 6px;">
+                            <button type="button" class="scanner-btn-small" id="quick-test-bls">Test BLS QR</button>
+                            <button type="button" class="scanner-btn-small" id="quick-test-hsfa">Test HSFA QR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Generator & Dual Viewer Modal -->
+    <div class="qr-modal-backdrop" id="qr-view-modal">
+        <div class="qr-modal" style="max-width: 520px;">
+            <div class="qr-modal-header">
+                <h3 class="qr-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    Scannable QR Codes (Both Templates)
+                </h3>
+                <button type="button" class="qr-modal-close" id="close-view-qr-btn">&times;</button>
+            </div>
+            <div class="qr-modal-body">
+                <div class="qr-tabs" id="qr-view-tabs">
+                    <button type="button" class="qr-tab-btn active" id="view-tab-bls">1. SHA BLS Provider</button>
+                    <button type="button" class="qr-tab-btn" id="view-tab-hsfa">2. SHA HSFA CPR AED</button>
+                </div>
+
+                <!-- BLS Panel -->
+                <div class="qr-tab-panel active" id="view-panel-bls">
+                    <div class="qr-code-view">
+                        <div class="qr-img-wrapper" style="display: flex; justify-content: center; margin-bottom: 12px;">
+                            <img src="./img/qr_shacpr_saa_bls.png" alt="QR Code SHA BLS" style="width: 200px; height: 200px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 8px; background: white;" id="qr-bls-img">
+                        </div>
+                        <div class="qr-code-meta">
+                            <strong>Kashif Ali</strong> S/O <strong>Ashiq Ali</strong><br>
+                            <span>Course: <strong>SHA BLS Provider</strong></span><br>
+                            <span>Valid: <strong>03-Sep-2026 to 26-Sep-2028</strong></span><br>
+                            <div style="margin-top: 8px; font-size: 13px; color: #00232d;">
+                                Scan with phone camera to open:<br>
+                                <a href="https://shacpr-saa.vercel.app/" target="_blank" style="color: #ffa600; font-weight: bold; text-decoration: underline;">https://shacpr-saa.vercel.app/</a>
+                            </div>
+                        </div>
+                        <div class="qr-modal-actions" style="margin-top: 15px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                            <a href="./img/qr_shacpr_saa_bls.png" download="QR_SHA_BLS_Kashif_Ali.png" class="qr-btn" style="text-decoration: none;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                                Download BLS QR
+                            </a>
+                            <button type="button" class="qr-btn secondary" id="simulate-scan-bls">
+                                Scan & Verify BLS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HSFA Panel -->
+                <div class="qr-tab-panel" id="view-panel-hsfa">
+                    <div class="qr-code-view">
+                        <div class="qr-img-wrapper" style="display: flex; justify-content: center; margin-bottom: 12px;">
+                            <img src="./img/qr_shacpr_orrg_hsfa.png" alt="QR Code SHA HSFA" style="width: 200px; height: 200px; border-radius: 8px; border: 1px solid #e0e0e0; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 8px; background: white;" id="qr-hsfa-img">
+                        </div>
+                        <div class="qr-code-meta">
+                            <strong>Kashif Ali</strong> S/O <strong>Ashiq Ali</strong><br>
+                            <span>Course: <strong>SHA HSFA CPR AED course</strong></span><br>
+                            <span>Valid: <strong>03-Sep-2026 to 26-Sep-2028</strong></span><br>
+                            <div style="margin-top: 8px; font-size: 13px; color: #00232d;">
+                                Scan with phone camera to open:<br>
+                                <a href="https://shacpr-orrg.vercel.app/" target="_blank" style="color: #ffa600; font-weight: bold; text-decoration: underline;">https://shacpr-orrg.vercel.app/</a>
+                            </div>
+                        </div>
+                        <div class="qr-modal-actions" style="margin-top: 15px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                            <a href="./img/qr_shacpr_orrg_hsfa.png" download="QR_SHA_HSFA_Kashif_Ali.png" class="qr-btn" style="text-decoration: none;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                                Download HSFA QR
+                            </a>
+                            <button type="button" class="qr-btn secondary" id="simulate-scan-hsfa">
+                                Scan & Verify HSFA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Matching Template -->
+    <div class="footer">
+        <div class="footer-container">
+            <!-- Left Side - About Us and Quick Links -->
+            <div class="footer-left">
+                <div class="about-section">
+                    <img src="./img/bcg.png" alt="SHA Logo" class="footer-main-logo">
+                    <h2>About Us</h2>
+                    <p>The Saudi Heart Association, hereafter called "The Association" is recognized at its premises and
+                        may have more chapters in other locations if needed.</p>
+                    <p>The progression and development of the scientific thinking in the speciality of the Association.
+                    </p>
+                    <img src="./img/about.png" alt="About Image" class="about-image">
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+
+                <div class="quick-links-section">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Online Courses</a></li>
+                        <li><a href="#">Training Centers</a></li>
+                        <li><a href="#">Become Training Center</a></li>
+                        <li><a href="#">Browse for old CPR website</a></li>
+                        <li><a href="#">For instructors and Coordinator</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Middle - Popular Courses -->
+            <div class="footer-middle">
+                <h2>Popular Courses</h2>
+                <ul>
+                    <li><a href="#">SHA BLS Provider</a></li>
+                    <li><a href="#">SHA ACLS Provider</a></li>
+                    <li><a href="#">SHA PALS Provider</a></li>
+                    <li><a href="#">SHA NIRP Provider</a></li>
+                    <li><a href="#">SHA HSFA CRR AED</a></li>
+                </ul>
+            </div>
+
+            <!-- Right Side - Support and Contact -->
+            <div class="footer-right">
+                <div class="support-section">
+                    <h2>Support</h2>
+                    <div class="support-item">
+                        <h4>CPR Chairman</h4>
+                        <a href="mailto:cprchairman@sha.org.sa" class="email-link">
+                            <img src="./img/email.png" alt="Email"> cprchairman@sha.org.sa
+                        </a>
+                    </div>
+                    <div class="support-item">
+                        <h4>CPR Registration</h4>
+                        <a href="mailto:cprregistration@sha.org.sa" class="email-link">
+                            <img src="./img/email.png" alt="Email"> cprregistration@sha.org.sa
+                        </a>
+                    </div>
+                    <div class="support-item">
+                        <h4>CPR Operation</h4>
+                        <a href="mailto:cproperation@sha.org.sa" class="email-link">
+                            <img src="./img/email.png" alt="Email"> cproperation@sha.org.sa
+                        </a>
+                    </div>
+                    <div class="support-item">
+                        <h4>CPR Events</h4>
+                        <a href="mailto:cprevents@sha.org.sa" class="email-link">
+                            <img src="./img/email.png" alt="Email"> cprevents@sha.org.sa
+                        </a>
+                    </div>
+                    <div class="support-item">
+                        <h4>CPR Help Desk</h4>
+                        <a href="mailto:cprhelpdesk@sha.org.sa" class="email-link">
+                            <img src="./img/email.png" alt="Email"> cprhelpdesk@sha.org.sa
+                        </a>
+                    </div>
+                </div>
+
+                <div class="location-section">
+                    <h2>Location</h2>
+                    <p>Head Quarters Office No. 603, Floor 6, Amaz Center Near Voco Hotel, King Fahad Road Riyadh</p>
+                </div>
+
+                <div class="contact-section">
+                    <h2>Call Us</h2>
+                    <p class="phone">+966 920 000 742</p>
+                </div>
+            </div>
+
+            <!-- Bottom Right - Certificate Search -->
+            <div class="right-side-container">
+                <div class="certificate-section">
+                    <h2>Search E-Certificate</h2>
+                    <p>Enter the eCertificate ID in the box and click on verify button to verify your certificate</p>
+                    <form class="search-container" id="search-form">
+                        <input type="text" id="cert-input" placeholder="Enter eCertificate ID" required>
+                        <button type="submit" id="verify-btn">Verify</button>
+                    </form>
+                    <div class="qr-action-row">
+                        <a href="scan.html" class="qr-btn" style="text-decoration: none;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path><rect x="7" y="7" width="10" height="10" rx="1"></rect></svg>
+                            Open Scanner Page
+                        </a>
+                        <button type="button" class="qr-btn secondary" id="view-qr-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                            View Both QR Codes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>Copyright © 2025 Saudi Heart Association <span>Powered & Owned By Konoz Retaj IT</span></p>
+            <img src="./img/footer img.png" alt="Partner Logo" class="partner-logo">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/html5-qrcode.min.js"></script>
+    <script src="./js/qrcode.min.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

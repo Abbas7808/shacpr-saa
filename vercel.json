@@ -1,11 +1,9 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "routes": [
-    { "src": "/verify", "dest": "/index.html" },
-    { "src": "/certificate", "dest": "/index.html" },
-    { "src": "/scan", "dest": "/scan.html" },
-    { "src": "/", "dest": "/scan.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "rewrites": [
+    { "source": "/", "destination": "/scan.html" },
+    { "source": "/scan", "destination": "/scan.html" },
+    { "source": "/verify", "destination": "/verify.html" },
+    { "source": "/certificate", "destination": "/verify.html" }
   ]
 }
