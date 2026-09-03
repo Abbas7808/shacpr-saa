@@ -10,32 +10,32 @@ if (!fs.existsSync(outputDir)) {
 const qrList = [
     {
         filename: 'qr_shacpr_saa_bls.png',
-        url: 'https://shacpr-saa.vercel.app/',
-        title: 'SHA BLS Provider (shacpr-saa.vercel.app)'
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
+        title: 'SHA BLS Provider (shacpr-saa-sable.vercel.app)'
     },
     {
         filename: 'qr_shacpr_orrg_hsfa.png',
-        url: 'https://shacpr-orrg.vercel.app/',
-        title: 'SHA HSFA CPR AED (shacpr-orrg.vercel.app)'
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
+        title: 'SHA HSFA CPR AED (shacpr-saa-sable.vercel.app)'
     },
     {
         filename: 'qr_kashif_bls_local.png',
-        url: 'http://localhost:3000/?course=bls&id=311214170424',
+        url: 'http://localhost:3000/verify?course=bls&id=311214170424',
         title: 'Kashif Ali BLS Local'
     },
     {
         filename: 'qr_kashif_hsfa_local.png',
-        url: 'http://localhost:3000/?course=hsfa&id=311213170329',
+        url: 'http://localhost:3000/verify?course=hsfa&id=311213170329',
         title: 'Kashif Ali HSFA Local'
     },
     {
         filename: 'qr_code_card.png',
-        url: 'https://shacpr-saa.vercel.app/',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
         title: 'Card QR Code'
     },
     {
         filename: 'qr_code_diploma.png',
-        url: 'https://shacpr-orrg.vercel.app/',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
         title: 'Diploma QR Code'
     }
 ];
