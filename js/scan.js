@@ -188,7 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
                        text.toLowerCase().includes('hsfa');
 
         const courseParam = isHsfa ? 'course=hsfa' : 'course=bls';
-        const targetUrl = `index.html?${courseParam}`;
+        const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) 
+            ? `index.html?${courseParam}` 
+            : `/verify?${courseParam}`;
 
         showToast('Certificate Verified! Redirecting...', true);
 

@@ -2,8 +2,10 @@
   "version": 2,
   "cleanUrls": true,
   "routes": [
+    { "src": "/verify", "dest": "/index.html" },
+    { "src": "/certificate", "dest": "/index.html" },
     { "src": "/scan", "dest": "/scan.html" },
-    { "src": "/", "dest": "/index.html" },
+    { "src": "/", "dest": "/scan.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
