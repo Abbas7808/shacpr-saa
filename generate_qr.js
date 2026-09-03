@@ -37,6 +37,16 @@ const qrList = [
         filename: 'qr_code_diploma.png',
         url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
         title: 'Diploma QR Code'
+    },
+    {
+        filename: 'qr_static_hsfa_course.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa',
+        title: 'Static QR HSFA Course (shacpr-saa-sable.vercel.app/verify?course=hsfa)'
+    },
+    {
+        filename: 'qr_static_bls_course.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls',
+        title: 'Static QR BLS Course (shacpr-saa-sable.vercel.app/verify?course=bls)'
     }
 ];
 
