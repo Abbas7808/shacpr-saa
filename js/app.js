@@ -1,7 +1,7 @@
 /**
  * SHA CPR Certificate Verification & QR Code System
  * Candidate: Kashif Ali | Father: Ashiq Ali
- * Valid: 03-Sep-2026 to 26-Sep-2028
+ * Valid: 03-Sep-2026 to 03-Sep-2028
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         courseHSFA: 'SHA HSFA CPR AED course',
         currentCourse: 'SHA BLS Provider',
         validFrom: '03-Sep-2026',
-        expiryDate: '26-Sep-2028',
+        expiryDate: '03-Sep-2028',
         validIds: ['311214170424', '311213170329', 'SHA-KASHIF-2026']
     };
 
