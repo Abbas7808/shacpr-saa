@@ -18,20 +18,19 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
     let rawPath = decodeURI(req.url.split('?')[0]);
-    if (rawPath === '/' || rawPath === '') rawPath = '/scan.html';
-    if (rawPath.toLowerCase() === '/verify' || rawPath.toLowerCase() === '/certificate') rawPath = '/verify.html';
-    if (rawPath.toLowerCase() === '/scan') rawPath = '/scan.html';
-    if (rawPath.toLowerCase() === '/about' || 
-        rawPath.toLowerCase() === '/aboutus' || 
-        rawPath.toLowerCase() === '/aboutus/index') rawPath = '/about.html';
+    if (rawPath === '/' || rawPath === '') rawPath = '/index.html';
+    
+    const lowerPath = rawPath.toLowerCase();
+    if (lowerPath === '/aboutus' || lowerPath === '/aboutus/index' || lowerPath === '/about') {
+        rawPath = '/AboutUs.html';
+    } else if (lowerPath === '/verify' || lowerPath === '/certificate') {
+        rawPath = '/verify.html';
+    } else if (lowerPath === '/scan') {
+        rawPath = '/scan.html';
+    }
 
     const cleanPath = rawPath.replace(/^[/\\]+/, '');
-    let filePath = path.resolve(__dirname, cleanPath);
-
-    // If file doesn't exist directly, check if .html exists
-    if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
-        filePath = filePath + '.html';
-    }
+    const filePath = path.resolve(__dirname, cleanPath);
 
     fs.stat(filePath, (err, stats) => {
         if (err || !stats.isFile()) {

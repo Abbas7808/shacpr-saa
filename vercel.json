@@ -5,9 +5,8 @@
     { "source": "/scan", "destination": "/scan.html" },
     { "source": "/verify", "destination": "/verify.html" },
     { "source": "/certificate", "destination": "/verify.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/AboutUs/Index", "destination": "/about.html" },
-    { "source": "/aboutus", "destination": "/about.html" },
-    { "source": "/AboutUs", "destination": "/about.html" }
+    { "source": "/AboutUs", "destination": "/AboutUs.html" },
+    { "source": "/AboutUs/Index", "destination": "/AboutUs.html" },
+    { "source": "/about", "destination": "/AboutUs.html" }
   ]
 }
