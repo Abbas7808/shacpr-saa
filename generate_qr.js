@@ -66,6 +66,11 @@ async function generateAll() {
         });
         console.log(`Generated: ${item.filename} -> ${item.url}`);
     }
+
+    // Also update root static QR code files
+    fs.copyFileSync(path.join(outputDir, 'qr_static_bls_course.png'), path.join(__dirname, 'qr_static_bls_course.png'));
+    fs.copyFileSync(path.join(outputDir, 'qr_static_hsfa_course.png'), path.join(__dirname, 'qr_static_hsfa_course.png'));
+    console.log('Copied static QR codes to root directory.');
     console.log('All QR codes generated successfully!');
 }
 
