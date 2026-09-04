@@ -4,6 +4,10 @@
     { "source": "/", "destination": "/scan.html" },
     { "source": "/scan", "destination": "/scan.html" },
     { "source": "/verify", "destination": "/verify.html" },
-    { "source": "/certificate", "destination": "/verify.html" }
+    { "source": "/certificate", "destination": "/verify.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/AboutUs/Index", "destination": "/about.html" },
+    { "source": "/aboutus", "destination": "/about.html" },
+    { "source": "/AboutUs", "destination": "/about.html" }
   ]
 }
