@@ -87,22 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check URL parameters on load
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('course')) {
-        const c = urlParams.get('course').toLowerCase();
-        if (c === 'hsfa' || c.includes('hsfa') || c.includes('cpr') || c.includes('firstaid') || c.includes('hearts')) {
-            certDetails.currentCourse = certDetails.courseHSFA;
-        } else {
-            certDetails.currentCourse = certDetails.courseBLS;
-        }
-        updateCardDisplay();
-    } else if (urlParams.has('id')) {
-        const idVal = urlParams.get('id').trim();
-        if (idVal === '21172105024' || idVal === '311213170329') {
-            certDetails.currentCourse = certDetails.courseHSFA;
-        } else {
-            certDetails.currentCourse = certDetails.courseBLS;
-        }
-        updateCardDisplay();
+    const courseParam = (urlParams.get('course') || '').toLowerCase();
+    const idParam = (urlParams.get('id') || '').trim();
+
+    const isHsfaCourse = courseParam === 'hsfa' || courseParam.includes('hsfa') || 
+                         courseParam.includes('cpr') || courseParam.includes('firstaid') || 
+                         courseParam.includes('hearts') || courseParam.includes('saver') || 
+                         idParam === '21172105024' || idParam === '311213170329';
+
+    if (isHsfaCourse) {
+        certDetails.currentCourse = certDetails.courseHSFA;
+        document.title = 'SHA Hearts Saver First Aid Verification - Saudi Heart Association';
+    } else if (courseParam.includes('bls') || idParam === '20979225338' || idParam === '311214170424') {
+        certDetails.currentCourse = certDetails.courseBLS;
+        document.title = 'SHA BLS Provider Verification - Saudi Heart Association';
+    }
+    updateCardDisplay();
+
+    // If HSFA requested, also switch QR viewer tab to HSFA by default
+    if (isHsfaCourse && viewTabHsfa && viewTabBls && viewPanelHsfa && viewPanelBls) {
+        viewTabHsfa.classList.add('active');
+        viewTabBls.classList.remove('active');
+        viewPanelHsfa.classList.add('active');
+        viewPanelBls.classList.remove('active');
     }
 
     // Toast Notification helper

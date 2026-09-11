@@ -38,6 +38,25 @@
                 <p class="detail-label">Certificate Expiry Date:</p>
                 <p class="detail-value" id="cert-expiry-date">11-Sep-2028</p>
             </div>
+            <script>
+                (function() {
+                    try {
+                        var p = new URLSearchParams(window.location.search);
+                        var c = (p.get('course') || '').toLowerCase();
+                        var id = (p.get('id') || '').trim();
+                        var isHsfa = c === 'hsfa' || c.indexOf('hsfa') !== -1 || c.indexOf('cpr') !== -1 || 
+                                     c.indexOf('hearts') !== -1 || c.indexOf('firstaid') !== -1 || 
+                                     c.indexOf('saver') !== -1 || id === '21172105024';
+                        if (isHsfa) {
+                            var el = document.getElementById('cert-course-name');
+                            if (el) el.textContent = 'SHA Hearts Saver First Aid';
+                            document.title = 'SHA Hearts Saver First Aid Verification';
+                        } else {
+                            document.title = 'SHA BLS Provider Verification';
+                        }
+                    } catch(e){}
+                })();
+            </script>
         </div>
     </div>
 
