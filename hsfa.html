@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home</title>
+    <title>SHA Hearts Saver First Aid Verification - Saudi Heart Association</title>
 </head>
 
 <body>
     <div class="certificate-container" id="certificate-container">
         <div class="logo-container">
-            <img class="main-logo" src="./img/logo.png" alt="Organization Logo">
-            <a href=" "><img class="icon-logo" src="./img/icon.png" alt="Icon"></a>
+            <a href="/"><img class="main-logo" src="./img/logo.png" alt="Organization Logo"></a>
+            <a href="/"><img class="icon-logo" src="./img/icon.png" alt="Icon"></a>
         </div>
 
         <div class="text-container">
             <h1>Certificate<br>Verification</h1>
         </div>
 
-        <div class="certificate-card">
+        <div class="certificate-card" id="certificate-card">
             <h1 class="card-heading">Certificate Details</h1>
             <hr class="divider">
             <div class="detail-row">
@@ -40,6 +40,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer Matching Template -->
     <div class="footer">
         <div class="footer-container">
             <!-- Left Side - About Us and Quick Links -->
@@ -58,13 +60,13 @@
                 <div class="quick-links-section">
                     <h2>Quick Links</h2>
                     <ul>
-                        <li><a href=" ">Home</a></li>
-                        <li><a href=" ">Courses</a></li>
-                        <li><a href=" ">Online Courses</a></li>
-                        <li><a href=" ">Training Centers</a></li>
-                        <li><a href=" ">Become Training Center</a></li>
-                        <li><a href=" ">Browse for old CPR website</a></li>
-                        <li><a href=" ">For instructors and Coordinator</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Online Courses</a></li>
+                        <li><a href="#">Training Centers</a></li>
+                        <li><a href="#">Become Training Center</a></li>
+                        <li><a href="#">Browse for old CPR website</a></li>
+                        <li><a href="#">For instructors and Coordinator</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,11 +75,11 @@
             <div class="footer-middle">
                 <h2>Popular Courses</h2>
                 <ul>
-                    <li><a href=" ">SHA BLS Provider</a></li>
-                    <li><a href=" ">SHA ACLS Provider</a></li>
-                    <li><a href=" ">SHA PALS Provider</a></li>
-                    <li><a href=" ">SHA NIRP Provider</a></li>
-                    <li><a href=" ">SHA HSFA CRR AED</a></li>
+                    <li><a href="bls.html">SHA BLS Provider</a></li>
+                    <li><a href="#">SHA ACLS Provider</a></li>
+                    <li><a href="#">SHA PALS Provider</a></li>
+                    <li><a href="#">SHA NIRP Provider</a></li>
+                    <li><a href="hsfa.html">SHA HSFA CRR AED</a></li>
                 </ul>
             </div>
 
@@ -134,7 +136,7 @@
                     <h2>Search E-Certificate</h2>
                     <p>Enter the eCertificate ID in the box and click on verify button to verify your certificate</p>
                     <form class="search-container">
-                        <input type="text" placeholder="Enter eCertificate ID" required>
+                        <input type="text" placeholder="Enter eCertificate ID" required><br>
                         <button type="submit">Verify</button>
                     </form>
                 </div>
@@ -162,12 +164,13 @@
             const certNumber = certInput.value.trim();
 
             const validIds = ['21172105024', '30870', '311213170329'];
-            if (validIds.includes(certNumber)) {
+            if (validIds.includes(certNumber) || certNumber.toUpperCase().includes('MEHDI')) {
                 // Valid certificate - reload and scroll to top
                 window.scrollTo(0, 0);
                 window.location.reload();
+            } else if (certNumber === '20979225338' || certNumber === '311214170424') {
+                window.location.href = 'bls.html';
             } else {
-                
                 // Invalid certificate - show error message
                 errorMsg.textContent = 'Invalid eCertificate ID';
                 certInput.classList.add('error');

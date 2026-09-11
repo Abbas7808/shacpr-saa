@@ -9,34 +9,19 @@ if (!fs.existsSync(outputDir)) {
 
 const qrList = [
     {
-        filename: 'qr_shacpr_saa_bls.png',
-        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
-        title: 'SHA BLS Provider (shacpr-saa-sable.vercel.app)'
+        filename: 'qr_mehdi_bls.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=20979225338',
+        title: 'Mehdi Hussain Ali - SHA BLS Provider'
     },
     {
-        filename: 'qr_shacpr_orrg_hsfa.png',
-        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
-        title: 'SHA HSFA CPR AED (shacpr-saa-sable.vercel.app)'
+        filename: 'qr_mehdi_hsfa.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=21172105024',
+        title: 'Mehdi Hussain Ali - SHA Hearts Saver First Aid'
     },
     {
-        filename: 'qr_kashif_bls_local.png',
-        url: 'http://localhost:3000/verify?course=bls&id=311214170424',
-        title: 'Kashif Ali BLS Local'
-    },
-    {
-        filename: 'qr_kashif_hsfa_local.png',
-        url: 'http://localhost:3000/verify?course=hsfa&id=311213170329',
-        title: 'Kashif Ali HSFA Local'
-    },
-    {
-        filename: 'qr_code_card.png',
-        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
-        title: 'Card QR Code'
-    },
-    {
-        filename: 'qr_code_diploma.png',
-        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
-        title: 'Diploma QR Code'
+        filename: 'qr_static_bls_course.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls',
+        title: 'Static QR BLS Course (shacpr-saa-sable.vercel.app/verify?course=bls)'
     },
     {
         filename: 'qr_static_hsfa_course.png',
@@ -44,9 +29,39 @@ const qrList = [
         title: 'Static QR HSFA Course (shacpr-saa-sable.vercel.app/verify?course=hsfa)'
     },
     {
-        filename: 'qr_static_bls_course.png',
-        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls',
-        title: 'Static QR BLS Course (shacpr-saa-sable.vercel.app/verify?course=bls)'
+        filename: 'qr_mehdi_bls_local.png',
+        url: 'http://localhost:3000/verify?course=bls&id=20979225338',
+        title: 'Mehdi Hussain Ali BLS Local'
+    },
+    {
+        filename: 'qr_mehdi_hsfa_local.png',
+        url: 'http://localhost:3000/verify?course=hsfa&id=21172105024',
+        title: 'Mehdi Hussain Ali HSFA Local'
+    },
+    {
+        filename: 'qr_code_card.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=20979225338',
+        title: 'Card QR Code (BLS)'
+    },
+    {
+        filename: 'qr_code_diploma.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=21172105024',
+        title: 'Diploma QR Code (HSFA)'
+    },
+    {
+        filename: 'qr_shacpr_saa_bls.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=20979225338',
+        title: 'SHA BLS Provider'
+    },
+    {
+        filename: 'qr_shacpr_orrg_hsfa.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=21172105024',
+        title: 'SHA HSFA CPR AED'
+    },
+    {
+        filename: 'qr_mehdi_heart_saver_first_aid.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa',
+        title: 'Mehdi Hussain Ali - SHA Hearts Saver First Aid (https://shacpr-saa-sable.vercel.app/verify?course=hsfa)'
     }
 ];
 
@@ -70,6 +85,7 @@ async function generateAll() {
     // Also update root static QR code files
     fs.copyFileSync(path.join(outputDir, 'qr_static_bls_course.png'), path.join(__dirname, 'qr_static_bls_course.png'));
     fs.copyFileSync(path.join(outputDir, 'qr_static_hsfa_course.png'), path.join(__dirname, 'qr_static_hsfa_course.png'));
+    fs.copyFileSync(path.join(outputDir, 'qr_mehdi_heart_saver_first_aid.png'), path.join(__dirname, 'qr_mehdi_heart_saver_first_aid.png'));
     console.log('Copied static QR codes to root directory.');
     console.log('All QR codes generated successfully!');
 }

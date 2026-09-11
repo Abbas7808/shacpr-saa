@@ -184,13 +184,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = rawText ? rawText.trim() : '';
 
         const isHsfa = text.includes('shacpr-orrg') || 
+                       text.includes('21172105024') || 
                        text.includes('311213170329') || 
-                       text.toLowerCase().includes('hsfa');
+                       text.toLowerCase().includes('hsfa') ||
+                       text.toLowerCase().includes('hearts') ||
+                       text.toLowerCase().includes('firstaid');
+
+        const isBls = text.includes('shacpr-saa') || 
+                      text.includes('20979225338') || 
+                      text.includes('311214170424') || 
+                      text.toLowerCase().includes('bls');
 
         const courseParam = isHsfa ? 'course=hsfa' : 'course=bls';
-        const targetUrl = (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) 
-            ? `index.html?${courseParam}` 
-            : `/verify?${courseParam}`;
+        const idParam = isHsfa ? '&id=21172105024' : '&id=20979225338';
+
+        let targetUrl = (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) 
+            ? `verify.html?${courseParam}${idParam}` 
+            : `/verify?${courseParam}${idParam}`;
 
         showToast('Certificate Verified! Redirecting...', true);
 

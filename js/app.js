@@ -1,20 +1,20 @@
 /**
  * SHA CPR Certificate Verification & QR Code System
- * Candidate: Kashif Ali | Father: Ashiq Ali
- * Valid: 03-Sep-2026 to 03-Sep-2028
+ * Candidate: MEHDI HUSSAIN ALI
+ * Valid: 11-Sep-2026 to 11-Sep-2028
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Certificate Master Data
     const certDetails = {
-        name: 'KASHIF ALI ASHIQ ALI',
-        father: 'ASHIQ ALI',
+        name: 'MEHDI HUSSAIN ALI',
+        father: '',
         courseBLS: 'SHA BLS Provider',
-        courseHSFA: 'SHA HSFA CPR AED course',
+        courseHSFA: 'SHA Hearts Saver First Aid',
         currentCourse: 'SHA BLS Provider',
-        validFrom: '03-Sep-2026',
-        expiryDate: '03-Sep-2028',
-        validIds: ['311214170424', '311213170329', 'SHA-KASHIF-2026']
+        validFrom: '11-Sep-2026',
+        expiryDate: '11-Sep-2028',
+        validIds: ['20979225338', '21172105024', '30870', '311214170424', '311213170329', 'SHA-MEHDI-2026']
     };
 
     // DOM Elements - Certificate Card
@@ -89,7 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has('course')) {
         const c = urlParams.get('course').toLowerCase();
-        if (c === 'hsfa' || c.includes('hsfa') || c.includes('cpr')) {
+        if (c === 'hsfa' || c.includes('hsfa') || c.includes('cpr') || c.includes('firstaid') || c.includes('hearts')) {
+            certDetails.currentCourse = certDetails.courseHSFA;
+        } else {
+            certDetails.currentCourse = certDetails.courseBLS;
+        }
+        updateCardDisplay();
+    } else if (urlParams.has('id')) {
+        const idVal = urlParams.get('id').trim();
+        if (idVal === '21172105024' || idVal === '311213170329') {
             certDetails.currentCourse = certDetails.courseHSFA;
         } else {
             certDetails.currentCourse = certDetails.courseBLS;
@@ -130,15 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check for specific courses based on URL or ID
         const isHsfa = cleaned.includes('shacpr-orrg') || 
+                       cleaned.includes('21172105024') || 
                        cleaned.includes('311213170329') || 
-                       cleaned.toLowerCase().includes('hsfa');
+                       cleaned.toLowerCase().includes('hsfa') ||
+                       cleaned.toLowerCase().includes('hearts') ||
+                       cleaned.toLowerCase().includes('firstaid');
 
         const isBls = cleaned.includes('shacpr-saa') || 
+                      cleaned.includes('20979225338') || 
                       cleaned.includes('311214170424') || 
                       cleaned.toLowerCase().includes('bls');
 
         const isMatch = isHsfa || isBls || 
                         certDetails.validIds.some(id => cleaned.includes(id)) ||
+                        cleaned.toUpperCase().includes('MEHDI') ||
                         cleaned.toUpperCase().includes('KASHIF') ||
                         cleaned.includes(window.location.hostname);
 
@@ -410,13 +423,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quickTestBls) {
         quickTestBls.addEventListener('click', () => {
             closeModal(scannerModal);
-            verifyCredential('https://shacpr-saa.vercel.app/');
+            verifyCredential('https://shacpr-saa-sable.vercel.app/verify?course=bls&id=20979225338');
         });
     }
     if (quickTestHsfa) {
         quickTestHsfa.addEventListener('click', () => {
             closeModal(scannerModal);
-            verifyCredential('https://shacpr-orrg.vercel.app/');
+            verifyCredential('https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=21172105024');
         });
     }
 
@@ -449,13 +462,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (simulateScanBls) {
         simulateScanBls.addEventListener('click', () => {
             closeModal(viewQrModal);
-            verifyCredential('https://shacpr-saa.vercel.app/');
+            verifyCredential('https://shacpr-saa-sable.vercel.app/verify?course=bls&id=20979225338');
         });
     }
     if (simulateScanHsfa) {
         simulateScanHsfa.addEventListener('click', () => {
             closeModal(viewQrModal);
-            verifyCredential('https://shacpr-orrg.vercel.app/');
+            verifyCredential('https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=21172105024');
         });
     }
 });

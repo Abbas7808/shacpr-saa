@@ -27,6 +27,14 @@ const server = http.createServer((req, res) => {
         rawPath = '/verify.html';
     } else if (lowerPath === '/scan') {
         rawPath = '/scan.html';
+    } else if (lowerPath === '/bls') {
+        rawPath = '/bls.html';
+    } else if (lowerPath === '/hsfa') {
+        rawPath = '/hsfa.html';
+    } else if (lowerPath === '/card-bls' || lowerPath === '/card_bls') {
+        rawPath = '/card_bls.html';
+    } else if (lowerPath === '/card-hsfa' || lowerPath === '/card_hsfa') {
+        rawPath = '/card_hsfa.html';
     }
 
     const cleanPath = rawPath.replace(/^[/\\]+/, '');
