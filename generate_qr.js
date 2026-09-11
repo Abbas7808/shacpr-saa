@@ -81,6 +81,43 @@ const qrList = [
         filename: 'qr_mehdi_bls_local.png',
         url: 'http://localhost:3000/verify?course=bls&id=20979225338',
         title: 'Mehdi Hussain Ali BLS Local'
+    },
+
+    // 3. Kashif Ali QR Codes - BLS Provider & Heart Saver First Aid
+    {
+        filename: 'qr_kashif_bls.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
+        title: 'Kashif Ali - SHA BLS Provider'
+    },
+    {
+        filename: 'QR_SHA_BLS_Kashif_Ali.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
+        title: 'QR SHA BLS Kashif Ali'
+    },
+    {
+        filename: 'qr_kashif_bls_local.png',
+        url: 'http://localhost:3000/verify?course=bls&id=311214170424',
+        title: 'Kashif Ali BLS Local'
+    },
+    {
+        filename: 'qr_kashif_hsfa.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
+        title: 'Kashif Ali - SHA Hearts Saver First Aid'
+    },
+    {
+        filename: 'QR_SHA_HSFA_Kashif_Ali.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=hsfa&id=311213170329',
+        title: 'QR SHA HSFA Kashif Ali'
+    },
+    {
+        filename: 'qr_kashif_hsfa_local.png',
+        url: 'http://localhost:3000/verify?course=hsfa&id=311213170329',
+        title: 'Kashif Ali HSFA Local'
+    },
+    {
+        filename: 'kashif_qr_code.png',
+        url: 'https://shacpr-saa-sable.vercel.app/verify?course=bls&id=311214170424',
+        title: 'Kashif Ali QR Code'
     }
 ];
 
@@ -93,7 +130,12 @@ const rootCopies = [
     'qr_static_hsfa_course.png',
     'qr_static_bls_course.png',
     'qr_mehdi_hsfa.png',
-    'qr_mehdi_bls.png'
+    'qr_mehdi_bls.png',
+    'qr_kashif_bls.png',
+    'qr_kashif_hsfa.png',
+    'QR_SHA_BLS_Kashif_Ali.png',
+    'QR_SHA_HSFA_Kashif_Ali.png',
+    'kashif_qr_code.png'
 ];
 
 async function generateAll() {

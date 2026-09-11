@@ -183,6 +183,20 @@ document.addEventListener('DOMContentLoaded', () => {
         stopScanner();
         const text = rawText ? rawText.trim() : '';
 
+        // If the scanned text is already a direct URL to verify or certificate
+        if (text.startsWith('http://') || text.startsWith('https://')) {
+            try {
+                const parsedUrl = new URL(text);
+                if (parsedUrl.pathname.includes('verify') || parsedUrl.pathname.includes('certificate')) {
+                    showToast('Certificate Verified! Redirecting...', true);
+                    setTimeout(() => {
+                        window.location.href = text;
+                    }, 300);
+                    return;
+                }
+            } catch (e) {}
+        }
+
         const isHsfa = text.includes('shacpr-orrg') || 
                        text.includes('21172105024') || 
                        text.includes('311213170329') || 
@@ -196,7 +210,23 @@ document.addEventListener('DOMContentLoaded', () => {
                       text.toLowerCase().includes('bls');
 
         const courseParam = isHsfa ? 'course=hsfa' : 'course=bls';
-        const idParam = isHsfa ? '&id=21172105024' : '&id=20979225338';
+        
+        let idVal = '';
+        if (text.includes('311214170424')) {
+            idVal = '311214170424';
+        } else if (text.includes('311213170329')) {
+            idVal = '311213170329';
+        } else if (text.toUpperCase().includes('KASHIF')) {
+            idVal = isHsfa ? '311213170329' : '311214170424';
+        } else if (text.includes('21172105024')) {
+            idVal = '21172105024';
+        } else if (text.includes('20979225338')) {
+            idVal = '20979225338';
+        } else {
+            idVal = isHsfa ? '21172105024' : '20979225338';
+        }
+
+        const idParam = `&id=${idVal}`;
 
         let targetUrl = (window.location.protocol === 'file:' || window.location.pathname.endsWith('.html')) 
             ? `verify.html?${courseParam}${idParam}` 
