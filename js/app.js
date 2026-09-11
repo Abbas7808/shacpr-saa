@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    let activeCandidate = candidates.mehdi; // default fallback
+    let activeCandidate = candidates.kashif; // default fallback is Kashif Ali
     let currentCourse = activeCandidate.courseBLS;
 
     // DOM Elements - Certificate Card
@@ -180,10 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const idParam = (urlParams.get('id') || '').trim();
     const candidateParam = (urlParams.get('candidate') || '').toLowerCase();
 
-    if (idParam === '311214170424' || idParam === '311213170329' || candidateParam === 'kashif' || courseParam.includes('kashif')) {
-        activeCandidate = candidates.kashif;
-    } else if (idParam === '20979225338' || idParam === '21172105024' || idParam === '30870' || candidateParam === 'mehdi') {
+    if (idParam === '20979225338' || idParam === '21172105024' || idParam === '30870' || candidateParam === 'mehdi' || courseParam.includes('mehdi')) {
         activeCandidate = candidates.mehdi;
+    } else {
+        activeCandidate = candidates.kashif;
     }
 
     const isHsfaCourse = courseParam === 'hsfa' || courseParam.includes('hsfa') || 

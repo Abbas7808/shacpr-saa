@@ -212,18 +212,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const courseParam = isHsfa ? 'course=hsfa' : 'course=bls';
         
         let idVal = '';
-        if (text.includes('311214170424')) {
+        if (text.includes('20979225338')) {
+            idVal = '20979225338';
+        } else if (text.includes('21172105024')) {
+            idVal = '21172105024';
+        } else if (text.toUpperCase().includes('MEHDI')) {
+            idVal = isHsfa ? '21172105024' : '20979225338';
+        } else if (text.includes('311214170424')) {
             idVal = '311214170424';
         } else if (text.includes('311213170329')) {
             idVal = '311213170329';
         } else if (text.toUpperCase().includes('KASHIF')) {
             idVal = isHsfa ? '311213170329' : '311214170424';
-        } else if (text.includes('21172105024')) {
-            idVal = '21172105024';
-        } else if (text.includes('20979225338')) {
-            idVal = '20979225338';
         } else {
-            idVal = isHsfa ? '21172105024' : '20979225338';
+            idVal = isHsfa ? '311213170329' : '311214170424';
         }
 
         const idParam = `&id=${idVal}`;
